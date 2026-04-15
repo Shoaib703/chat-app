@@ -1,0 +1,46 @@
+*{
+  padding: 5px;
+  margin: 2px;
+}
+
+.topbar{
+  height:15vh;
+  background:#110;
+  color :white;
+  padding:10px;
+  display:flex;
+  align-items: center;
+}
+.left_top{
+  height:15vh;
+  width:15vh;
+  border-radius:50%;
+  border:2px double white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.right_top{
+  height:15vh;
+  width:80vw;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.msgarea{
+  height:70vh;
+  border:5px solid brown;
+}
+
+
+.contentarea{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.msg>textarea{
+  width:90vw;
+}
