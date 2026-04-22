@@ -92,22 +92,29 @@ if(check){
 }
 
 
-const getconvo=async(user,limit,page)=>{
+const getconvo=async(user)=>{
     //  limit=limit||10
     //  page=page||1
-    const offset=(page-1)*limit
-      const conversations=await Conversation.aggregate([
-        {
-            $match:{
-                participants:{$in:[user]}
-            }
-        },
-        {$skip:offset
-        },
-        {
-            $limit:limit
-        }
-    ])
+    // const offset=(page-1)*limit
+
+    // console.log (user)
+    //   const conversations=await Conversation.aggregate([
+    //     {
+    //         $match:{
+    //             participants:{$in:[user]}
+    //         }
+    //     },
+    //     {$skip:offset
+    //     },
+    //     {
+    //         $limit:limit
+    //     }
+    // ])
+
+    const conversations = await Conversation.find({ participants:user })
+//   .limit(limit)
+  .sort({ updatedAt: -1 });
+    // console.log(conversations);
     return conversations
 
 }

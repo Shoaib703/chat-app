@@ -1,6 +1,6 @@
-export default function Msg({data}){
+export default function Msg({data,isUser}){
     return (
-        <div className="msgsent" style={{width:"225px",
+      <>{ isUser ?( <div className="msgsent" style={{width:"225px",
          height:"auto",
            backgroundColor:" #537091 ",
             border:"2px solid black",
@@ -8,6 +8,20 @@ export default function Msg({data}){
             // justifyContent:"flex-end"
             marginLeft:"auto"}}>
             {data}
+        </div>)
+        :
+        (
+        <div className="msgrecieved" style={{width:"225px",
+            height:"auto",
+            backgroundColor:"#462908",
+            border:"2px solid black",
+            marginRight:"auto"
+        }}>
+            {data}
         </div>
+      
+    )}
+
+      </>
     )
 }

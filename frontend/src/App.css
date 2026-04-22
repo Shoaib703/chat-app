@@ -44,3 +44,80 @@
 .msg>textarea{
   width:90vw;
 }
+
+.searchbar{
+  display:flex;
+  align-items:center;
+ height:5vh;
+  
+}
+.searchbar>textarea{
+  width:80vw;
+  border:2px solid black;
+  border-radius :25px;
+}
+
+.searchbar>button{
+  height:40px;
+  width:70px;
+  border:2px solid black;
+  border-radius :25px;
+}
+
+
+.chat{
+  width:80vw;
+  height:8vh;
+  border: 0.5px solid black;
+  border-radius:5px;
+}
+
+.chat>h3{
+  font-weight: bold;
+  font-style: oblique;
+}
+
+.chat>p{
+  opacity: 0.5;
+}
+
+
+
+
+.panel {
+    position: fixed;
+    top: 0;
+    right: -30vw;
+    width: 30vw;
+    height: 100vh;
+    background: white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
+}
+
+.panel.open {
+    right: 0;
+}
+
+.panel input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.panel button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #1D9E75;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}

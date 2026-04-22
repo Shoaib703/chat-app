@@ -27,7 +27,7 @@ export const initSocket = (server) => {
     socket.on("send-message", async(data,conversationid,userId) => {
       socket.user={ _id:userId}
     const mssg= await storemessage(data,socket);
-  //      console.log("User:", userId);          // 👈 is userId coming?
+  //      console.log("User:", userId);          
   // console.log("Room:", socket.conversationid); 
     io.to(socket.conversationid).emit("newmsg",(mssg));
 

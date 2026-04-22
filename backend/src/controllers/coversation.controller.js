@@ -59,19 +59,22 @@ const creategroup=asyncHandler(async(req,res)=>{
 const start_privateconversation=asyncHandler(async(req,res)=>{
     const {reciever_id}=req.body;
 
-    if(!isValidObjectId(reciever_id)){
-        return res
-        .status(400)
-        .json(
-            new ApiResponse(
-                400,
-                {},
-                "not valid  reciever"
-            )
-        )
-    }
-    const checking=await User.findById(reciever_id)
-
+    // if(!isValidObjectId(reciever_id)){
+    //     return res
+    //     .status(400)
+    //     .json(
+    //         new ApiResponse(
+    //             400,
+    //             {},
+    //             "not valid  reciever"
+    //         )
+    //     )
+    // }
+    // const checking=await User.findById(reciever_id)
+    const checking =await User.findOne({
+        email:reciever_id
+    })
+    console.log(checking);
     if(!checking){
         return res
         .status(404)
@@ -94,7 +97,7 @@ const start_privateconversation=asyncHandler(async(req,res)=>{
 
 
 
-    const pvtconversation=await start_pvtconversation(reciever_id,user)
+    const pvtconversation=await start_pvtconversation(checking._id,user)
 
     return res
     .status(200)
@@ -112,14 +115,14 @@ const start_privateconversation=asyncHandler(async(req,res)=>{
 
 const getmyconversation=asyncHandler(async(req,res)=>{
     const user=req.user?._id
-      const page = Number(req.query.page) || 1
-     const limit = Number(req.query.limit) || 10
+    //   const page = Number(req.query.page) || 1
+    //  const limit = Number(req.query.limit) || 10
 
     if(!user || !isValidObjectId(user)){
         throw new ApiError(407,"invalid userr")
     }
 
-  const conversations=await getconvo(user,page,limit)
+  const conversations=await getconvo(user)
 
     if(!conversations){
         return res.status(409)
