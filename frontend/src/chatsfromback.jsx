@@ -6,7 +6,7 @@ import {Navig} from './home.jsx'
 const currentuser='69e7281f83aa38a27c842dcc'
 const Chatsfromback = () => {
     const handleclick=Navig();
-    const accesstoken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWU3MjgxZjgzYWEzOGEyN2M4NDJkY2MiLCJlbWFpbCI6Imxhc3RAZ21haWwuY29tIiwidXNlcm5hbWUiOiJsYXN0IiwicGhvbmUiOjk4NzY1NDEwMDEsImlhdCI6MTc3Njc3ODgyMSwiZXhwIjoxNzc2ODY1MjIxfQ.WKwTioZ0f-rjFoWrQ8mj1B-2KEIoAqrTfE-tBnCbw00"
+    const accesstoken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWU3MjgxZjgzYWEzOGEyN2M4NDJkY2MiLCJlbWFpbCI6Imxhc3RAZ21haWwuY29tIiwidXNlcm5hbWUiOiJsYXN0IiwicGhvbmUiOjk4NzY1NDEwMDEsImlhdCI6MTc3Njg3NTkwMSwiZXhwIjoxNzc2OTYyMzAxfQ.FLZrDDtH1pC-YUX_F2y4RHdzAzs1pZAVDJIv-EiVtYs"
     const [conversations, setconversation] = useState([])
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const Chatsfromback = () => {
                 const x=convo.participants.find(p=>p!==currentuser);
 
                 return (
-                    <Chat onClick={()=>handleclick(convo._id)} style={{cursor:"pointer"}}
+                    <Chat onClick={()=>handleclick(convo._id,currentuser)} style={{cursor:"pointer"}}
                     key={convo._id}
                     Userid ={x}
                     Last_message={"this is the last message"}

@@ -5,7 +5,7 @@ import{storemessage} from "./messagehandler.js"
 export const initSocket = (server) => {
   const io = new Server(server, {
     cors: {
-      origin: "http://127.0.0.1:3000",
+      origin: process.env.CORS_ORIGIN,
       methods: ["GET", "POST"]
     }
   })
@@ -19,17 +19,17 @@ export const initSocket = (server) => {
 
     
     socket.on("join-room",(data,)=>{
-      socket.join(data.conversationid)
-      socket.conversationid=data.conversationid
+      socket.join(data.convo_id)
+      socket.conversationid=data.convo_id
+      console.log(data.convo_id)
       // console.log(`Socket ${socket.id} joined room ${data.conversationid}`); 
     })
 
     socket.on("send-message", async(data,conversationid,userId) => {
       socket.user={ _id:userId}
-    const mssg= await storemessage(data,socket);
-  //      console.log("User:", userId);          
-  // console.log("Room:", socket.conversationid); 
-    io.to(socket.conversationid).emit("newmsg",(mssg));
+    const {mssg,sender}= await storemessage(data,socket);
+    console.log(mssg)
+    io.to(socket.conversationid).emit("newmsg",{mssg,sender});
 
       // console.log("Message from client:", data)
     })

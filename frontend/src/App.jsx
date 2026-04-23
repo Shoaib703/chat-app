@@ -11,7 +11,7 @@ function App(){
     {path:"/",
       element:<Home/>
     },
-    {path:"/msg/:convo_id",
+    {path:"/msg/:convo_id/:user",
       element:<Msgs/>
     },
   ])
