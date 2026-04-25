@@ -10,10 +10,10 @@ export const initSocket = (server) => {
     }
   })
 
-//   io.use(socketAuthMiddleware)
+   io.use(socketAuthMiddleware)
 
   io.on("connection", (socket) => {
-    console.log(" SOCKET CONNECTED:", socket.id)
+    // console.log(" SOCKET CONNECTED:", socket.id)
     
     socket.emit("test-event", "Hello from backend")
 
@@ -21,14 +21,12 @@ export const initSocket = (server) => {
     socket.on("join-room",(data,)=>{
       socket.join(data.convo_id)
       socket.conversationid=data.convo_id
-      console.log(data.convo_id)
-      // console.log(`Socket ${socket.id} joined room ${data.conversationid}`); 
+
     })
 
-    socket.on("send-message", async(data,conversationid,userId) => {
-      socket.user={ _id:userId}
+    socket.on("send-message", async(data) => {
+
     const {mssg,sender}= await storemessage(data,socket);
-    console.log(mssg)
     io.to(socket.conversationid).emit("newmsg",{mssg,sender});
 
       // console.log("Message from client:", data)

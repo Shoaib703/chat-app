@@ -6,7 +6,7 @@ import {useParams} from "react-router-dom"
 import Usermessages from './usermessages.jsx';
 import {socket} from './socket.js'
 
- import {useEffect,useState} from 'react'
+ import {useEffect,useState,useRef} from 'react'
 
 
 
@@ -29,7 +29,11 @@ function Top_bar(){
 }
 
 function Centre({convo_id,user,msg}){
-  //  console.log(msg);
+  const bottomRef = useRef(null);
+
+useEffect(() => {
+  bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+}, [msg]);
   return (
     <div className="msgarea">
       <h1>this is the message area</h1>
@@ -40,10 +44,11 @@ function Centre({convo_id,user,msg}){
      
      {msg.map((m,index)=>(
       <Msg key={index} data={m.mssg} isUser={m.sender===user}/>
-    
+   
   ))
 
 }
+ <div ref={bottomRef} />
 </div> 
 ) } 
 
@@ -52,7 +57,7 @@ function Bottom_bar({convo_id,user}){
   function sendmsg(){
   const data= document.getElementById("message");
   // console.log(data.value);
- socket.emit("send-message",data.value,convo_id,user);
+ socket.emit("send-message",data.value);
     data.value="";
 }
   return (
@@ -81,10 +86,12 @@ const [msg,setmsg]=useState([])
 
 useEffect(()=>{
 
-
+ if (socket.connected) {
+        socket.emit("join-room", { convo_id });
+    }
 
 socket.on("connect",()=>{
-    // console.log("connected",socket.id);
+   
     socket.emit("join-room",{convo_id});
 })
 

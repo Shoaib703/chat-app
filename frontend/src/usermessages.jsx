@@ -1,10 +1,12 @@
-
+import { useAuth } from './AuthContext.jsx';
 import {useEffect,useState} from 'react'
 import Msg from './messagebox.jsx'
 const Usermessages=({convoid,user})=>{
     const x=(convoid);
     const [messages,setmessages]=useState([])
-    const accesstoken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWU3MjgxZjgzYWEzOGEyN2M4NDJkY2MiLCJlbWFpbCI6Imxhc3RAZ21haWwuY29tIiwidXNlcm5hbWUiOiJsYXN0IiwicGhvbmUiOjk4NzY1NDEwMDEsImlhdCI6MTc3Njg3NTkwMSwiZXhwIjoxNzc2OTYyMzAxfQ.FLZrDDtH1pC-YUX_F2y4RHdzAzs1pZAVDJIv-EiVtYs"
+    const auth=useAuth()
+    const accesstoken=auth.accesstoken
+    console.log("usermessages:", accesstoken)
     useEffect(()=>{
         const fetchmsg=async()=>{
             

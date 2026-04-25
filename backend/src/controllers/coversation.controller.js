@@ -39,7 +39,7 @@ const creategroup=asyncHandler(async(req,res)=>{
    const group=await creategrp(email,phone,group_name,avatarpath,user)
 
 
-    console.log(group)
+    // console.log(group)
 
 
     return res

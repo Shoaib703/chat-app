@@ -32,6 +32,7 @@
 .msgarea{
   height:70vh;
   border:5px solid brown;
+  overflow-y:auto;
 }
 
 
@@ -120,4 +121,51 @@
     color: white;
     cursor: pointer;
     font-size: 14px;
+}
+
+
+
+
+.main{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:10px;
+  height:55vh;
+  width:40vw;
+  margin:50px 20vw 190px 30vw;
+  border-radius: 50px;
+  border:2px solid black;
+
+}
+
+.main>input{
+  border:2px dashed black;
+  width:250px;
+  border-radius:50px;
+}
+
+
+
+
+
+.login{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:10px;
+  height:55vh;
+  width:40vw;
+  margin:50px 20vw 190px 30vw;
+  border-radius: 50px;
+  border:2px solid black;
+
+}
+
+.login>input{
+  border:2px dashed black;
+  width:250px;
+  border-radius:50px;
 }

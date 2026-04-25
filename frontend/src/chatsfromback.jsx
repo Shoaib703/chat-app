@@ -1,13 +1,18 @@
 import Chat from './chats.jsx'
 import { useState, useEffect } from 'react'
 import {Navig} from './home.jsx'
+import {useAuth} from './AuthContext.jsx'
 
 
-const currentuser='69e7281f83aa38a27c842dcc'
 const Chatsfromback = () => {
     const handleclick=Navig();
-    const accesstoken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWU3MjgxZjgzYWEzOGEyN2M4NDJkY2MiLCJlbWFpbCI6Imxhc3RAZ21haWwuY29tIiwidXNlcm5hbWUiOiJsYXN0IiwicGhvbmUiOjk4NzY1NDEwMDEsImlhdCI6MTc3Njg3NTkwMSwiZXhwIjoxNzc2OTYyMzAxfQ.FLZrDDtH1pC-YUX_F2y4RHdzAzs1pZAVDJIv-EiVtYs"
+
+    const auth=useAuth()
+    const accesstoken=auth.accesstoken
+    const user=auth.user
+      console.log("chatsfromback",accesstoken)
     const [conversations, setconversation] = useState([])
+    
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -31,10 +36,10 @@ const Chatsfromback = () => {
     return (
            <div>
             {conversations.map((convo)=>{
-                const x=convo.participants.find(p=>p!==currentuser);
+                const x=convo.participants.find(p=>p!==user);
 
                 return (
-                    <Chat onClick={()=>handleclick(convo._id,currentuser)} style={{cursor:"pointer"}}
+                    <Chat onClick={()=>handleclick(convo._id,user)} style={{cursor:"pointer"}}
                     key={convo._id}
                     Userid ={x}
                     Last_message={"this is the last message"}

@@ -4,7 +4,7 @@ import {useState} from 'react'
 import Addcontact from './adddcontact.jsx'
 import Chatsfromback from './chatsfromback.jsx'
 import {useNavigate} from "react-router-dom"
-
+import {useAuth} from'./AuthContext.jsx'
 import { createBrowserRouter,RouterProvider } from 'react-router'
 
 function Searchbar(){
@@ -17,7 +17,8 @@ function Searchbar(){
         </div>
     )
 }
-const accesstoken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWU3MjgxZjgzYWEzOGEyN2M4NDJkY2MiLCJlbWFpbCI6Imxhc3RAZ21haWwuY29tIiwidXNlcm5hbWUiOiJsYXN0IiwicGhvbmUiOjk4NzY1NDEwMDEsImlhdCI6MTc3Njg3NTkwMSwiZXhwIjoxNzc2OTYyMzAxfQ.FLZrDDtH1pC-YUX_F2y4RHdzAzs1pZAVDJIv-EiVtYs"
+
+
 
 
 
@@ -25,6 +26,7 @@ const accesstoken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWU3MjgxZjgz
 
 
 function Chats(){
+
     return (
         <>
         <h1> this is chat area</h1>
@@ -77,9 +79,6 @@ export function Navig(){
     const navigate=useNavigate();
 
     const handleclick=(convo,user)=>{
-        // console.log(convo);
-        // console.log(convo);
-        // console.log(user);
         navigate(`/msg/${convo}/${user}`);
         
     }
@@ -87,6 +86,9 @@ export function Navig(){
 }
 
 function Home(){
+    const auth=useAuth()
+    const accesstoken=auth.accesstoken
+      console.log("home",accesstoken)
     return (
         <>
         <Searchbar/>

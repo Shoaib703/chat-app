@@ -19,6 +19,7 @@ router.route("/register").post(
     registerUser
 )
 
+// router.route("/loginUser").post(loginUser)
 router.route("/loginUser").post(upload.none(),loginUser)
 router.route("/logoutUser").get(logoutUser)
 router.route("/changepassword").patch(verifyJWT,upload.none(),changepassword)

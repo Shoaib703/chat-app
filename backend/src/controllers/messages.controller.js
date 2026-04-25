@@ -38,7 +38,7 @@ const getmessages=asyncHandler(async(req,res)=>{
     // limit=limit||20; 
     
     const messages=await getmsg(conversation_id,page,limit)
-    console.log(messages)
+    
     if(!messages){
         throw new ApiError(
             411,"failed to fetch the messages"

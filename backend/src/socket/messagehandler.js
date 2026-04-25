@@ -13,7 +13,7 @@ const storemessage=async( data ,socket)=>{
         sender:user,
         reciever:convo.participants
     });
-    // console.log(msg.message)
+    //  console.log(msg)
     return {mssg:msg.message,sender:msg.sender};
 }
 

@@ -3,13 +3,23 @@ import './App.css'
 import Msgs from './MessageWindow.jsx'
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import Home from './home.jsx'
+import Signup from './signup.jsx'
+import Login from './login.jsx'
 
 
 function App(){
   
   const router=createBrowserRouter([
-    {path:"/",
+    {
+      path:"/",
+      element:<Login/>
+    },
+    {path:"/home",
       element:<Home/>
+    },
+    {
+      path:"/signup",
+      element:<Signup/>
     },
     {path:"/msg/:convo_id/:user",
       element:<Msgs/>

@@ -83,8 +83,8 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
 
+    console.log(req.body)
     const { email, phone, password } = req.body;
-
     if (!(email || phone)) {
         return res
             .status(403)
