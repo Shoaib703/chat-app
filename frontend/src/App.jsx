@@ -6,10 +6,7 @@ import Home from './home.jsx'
 import Signup from './signup.jsx'
 import Login from './login.jsx'
 
-
-function App(){
-  
-  const router=createBrowserRouter([
+const router=createBrowserRouter([
     {
       path:"/",
       element:<Login/>
@@ -25,6 +22,8 @@ function App(){
       element:<Msgs/>
     },
   ])
+function App(){
+  
   return <>
   < RouterProvider router={router}/>
   </>

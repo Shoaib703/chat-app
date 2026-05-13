@@ -5,7 +5,7 @@ const storemessage=async( data ,socket)=>{
     const conversationid=socket.conversationid
     const abc=data
     const convo=await Conversation.findById(conversationid)
-    //  console.log(convo)
+
     const msg=await Message.create({
        conversationId: conversationid,
          message:abc,
@@ -13,7 +13,7 @@ const storemessage=async( data ,socket)=>{
         sender:user,
         reciever:convo.participants
     });
-    //  console.log(msg)
+
     return {mssg:msg.message,sender:msg.sender};
 }
 

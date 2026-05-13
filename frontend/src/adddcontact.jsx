@@ -5,8 +5,6 @@ import {useAuth} from './AuthContext.jsx'
        
         export default function Addcontact({ setIsOpen }) {
             const auth=useAuth()
-            const accesstoken=auth.accesstoken
-            console.log("adddcontact : ",accesstoken);
     const [userId, setUserId] = useState("");
 
     const handleSubmit =async () => {
@@ -15,9 +13,7 @@ import {useAuth} from './AuthContext.jsx'
         
         const response= await fetch("http://localhost:8000/api/v2/conversations/start_privateconversation",{
             method:"POST",
-           headers: {
-            Authorization:`Bearer ${accesstoken}`
-            },
+            credentials:'include',
             body:formdata
         });
 

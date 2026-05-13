@@ -71,9 +71,8 @@ function Signup() {
     }
     return (
         <>
-            <h1> this is the signup page</h1>
 
-            <div className="main">
+            <div className="main" >
                 <input type="text" name="email" placeholder="enter your email" onChange={handlechange} />
 
                 <input type="number" name="phone" placeholder="enter you phone no." onChange={handlechange} />

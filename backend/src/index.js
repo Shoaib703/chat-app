@@ -9,8 +9,7 @@ dotenv.config({
  });
 
 
-//  console.log ("--------------->");
-// console.log(process.env.MONGODB_URI)
+
 const server = createServer(app)
 initSocket(server)
 

@@ -19,7 +19,7 @@ const creategroup=asyncHandler(async(req,res)=>{
 
     const user=req.user?._id
 
-    // console.log(user)
+  
     
     if(!user){
         throw new ApiError(411,"user not available")
@@ -33,13 +33,13 @@ const creategroup=asyncHandler(async(req,res)=>{
     const avatarpath=req.files?.avatar?.[0]?.path;
    
 
-    // console.log(avatarpath)
+
     
 
    const group=await creategrp(email,phone,group_name,avatarpath,user)
 
 
-    // console.log(group)
+  
 
 
     return res
@@ -72,9 +72,9 @@ const start_privateconversation=asyncHandler(async(req,res)=>{
     // }
     // const checking=await User.findById(reciever_id)
     const checking =await User.findOne({
-        email:reciever_id
+        username:reciever_id
     })
-    console.log(checking);
+ 
     if(!checking){
         return res
         .status(404)
@@ -123,6 +123,8 @@ const getmyconversation=asyncHandler(async(req,res)=>{
     }
 
   const conversations=await getconvo(user)
+
+
 
     if(!conversations){
         return res.status(409)

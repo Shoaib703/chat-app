@@ -9,7 +9,7 @@ import mongoose,{isValidObjectId} from "mongoose"
 import{ getmsg } from "../services/message.services.js"
 const getmessages=asyncHandler(async(req,res)=>{
     const {conversation_id}=req.params
-    // console.log(conversation_id)
+  
     if(!conversation_id || !isValidObjectId(conversation_id)){
         return res 
         .status(410)

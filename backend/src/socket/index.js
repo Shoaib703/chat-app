@@ -5,16 +5,16 @@ import{storemessage} from "./messagehandler.js"
 export const initSocket = (server) => {
   const io = new Server(server, {
     cors: {
-      origin: process.env.CORS_ORIGIN,
-      methods: ["GET", "POST"]
+      origin: process.env.CORS_ORIGIN?.split(','),
+      methods: ["GET", "POST"],
+      credentials:true
     }
   })
 
    io.use(socketAuthMiddleware)
 
   io.on("connection", (socket) => {
-    // console.log(" SOCKET CONNECTED:", socket.id)
-    
+   
     socket.emit("test-event", "Hello from backend")
 
     
@@ -25,11 +25,12 @@ export const initSocket = (server) => {
     })
 
     socket.on("send-message", async(data) => {
+        
 
+      
     const {mssg,sender}= await storemessage(data,socket);
     io.to(socket.conversationid).emit("newmsg",{mssg,sender});
 
-      // console.log("Message from client:", data)
     })
   })
 

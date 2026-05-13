@@ -25,6 +25,7 @@ function Login(){
                         headers:{
                             "Content-type":"application/json"
                         },
+                        credentials:'include',
                         body:JSON.stringify({
                             email:form.email,
                             phone:form.phone,
@@ -39,13 +40,13 @@ function Login(){
                    
                     throw new Error(disp.message||"something is not right")
                 }
-                login(disp.data.accessToken,disp.data.user._id)
-                  console.log("login:",disp.data.accessToken)
-                navigate(`home`)
+                login(disp.data.user._id)
+                   
+                navigate("/home")
             }
             catch(err){
                  seterror(err.message)
-            //    console.log(error)
+
             }
         }
 

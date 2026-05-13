@@ -83,7 +83,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
 
-    console.log(req.body)
+   
     const { email, phone, password } = req.body;
     if (!(email || phone)) {
         return res
@@ -220,7 +220,7 @@ const changepassword = asyncHandler(async (req, res) => {
         throw new ApiError(404, "User not found");
     }
 
-    console.log(user);
+
     const isPasswordvalid = await user.isPasswordCorrect(current_password)
 
     if (!isPasswordvalid) {
@@ -260,7 +260,6 @@ const changepassword = asyncHandler(async (req, res) => {
 
 const changecoverimage = asyncHandler(async (req, res) => {
     const coverimagepath = req.files?.coverimage?.[0]?.path;
-    console.log (req.files);
     if (!coverimagepath) {
         throw new ApiError(407, "image path not found")
     }
@@ -300,7 +299,7 @@ const changecoverimage = asyncHandler(async (req, res) => {
     )
 
 })
-
+    
 
 export {
     registerUser,

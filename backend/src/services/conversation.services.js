@@ -77,7 +77,7 @@ const start_pvtconversation=async(recieverid,senderid)=>{
             $eq:[{$size:"$participants"},2]
         }
 })
-// console.log (check)
+
 if(check){
     return check;
 }
@@ -93,28 +93,11 @@ if(check){
 
 
 const getconvo=async(user)=>{
-    //  limit=limit||10
-    //  page=page||1
-    // const offset=(page-1)*limit
 
-    // console.log (user)
-    //   const conversations=await Conversation.aggregate([
-    //     {
-    //         $match:{
-    //             participants:{$in:[user]}
-    //         }
-    //     },
-    //     {$skip:offset
-    //     },
-    //     {
-    //         $limit:limit
-    //     }
-    // ])
-
-    const conversations = await Conversation.find({ participants:user })
-//   .limit(limit)
+    const conversations = await Conversation.find({ participants:user }).populate('participants','username')
   .sort({ updatedAt: -1 });
-    // console.log(conversations);
+
+
     return conversations
 
 }

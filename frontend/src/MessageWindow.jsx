@@ -11,10 +11,9 @@ import {socket} from './socket.js'
 
 
 
-var Data="this is temp data"
 
 
-function Top_bar(){
+function Top_bar({convo_id}){
   return (
     <div className="topbar">
       
@@ -22,7 +21,7 @@ function Top_bar(){
     this is for profile picture.
       </div>
       <div className="right_top">
-        this is for email or number or username.
+        {convo_id}
       </div>
     </div>
   )
@@ -36,10 +35,7 @@ useEffect(() => {
 }, [msg]);
   return (
     <div className="msgarea">
-      <h1>this is the message area</h1>
-      <Msg data={Data} isUser={true}/>
-      <Msg data={"this is the reciever side"} isUser={false}/>
-          {/* console.log(convo_id); */}
+        
       <Usermessages convoid={convo_id} user={user}/>
      
      {msg.map((m,index)=>(
@@ -56,7 +52,6 @@ useEffect(() => {
 function Bottom_bar({convo_id,user}){
   function sendmsg(){
   const data= document.getElementById("message");
-  // console.log(data.value);
  socket.emit("send-message",data.value);
     data.value="";
 }
@@ -76,8 +71,6 @@ function Bottom_bar({convo_id,user}){
 
 function Msgs(){
   const {convo_id,user}=useParams();
-        //  console.log(convo_id);
-    //  console.log(user)
   
 const [msg,setmsg]=useState([])
 
@@ -86,20 +79,19 @@ const [msg,setmsg]=useState([])
 
 useEffect(()=>{
 
+  socket.connect();
+
  if (socket.connected) {
         socket.emit("join-room", { convo_id });
     }
 
 socket.on("connect",()=>{
-   
     socket.emit("join-room",{convo_id});
 })
 
 
 
 socket.on("newmsg",({mssg,sender})=>{
-  //  console.log(mssg)
-  //  console.log(sender)
   setmsg(prev=>[...prev,{mssg,sender}]);
 
 })
@@ -108,13 +100,14 @@ socket.on("newmsg",({mssg,sender})=>{
 return ()=> {
   socket.off("connect");
   socket.off("newmsg");
-}
+  socket.disconnect();
+};
 },[convo_id]);
   
 
   return (
   <>
-  <Top_bar/>
+  <Top_bar convo_id={convo_id}/>
     <Centre convo_id={convo_id} user={user} msg={msg}/>
   <Bottom_bar convo_id={convo_id} user={user} />
   

@@ -2,10 +2,9 @@ export default function Msg({data,isUser}){
     return (
       <>{ isUser ?( <div className="msgsent" style={{width:"225px",
          height:"auto",
-           backgroundColor:" #537091 ",
+           backgroundColor:"oklch(37.3% 0.034 259.733) "
+           ,color:"white",
             border:"2px solid black",
-            // display:"flex",
-            // justifyContent:"flex-end"
             marginLeft:"auto"}}>
             {data}
         </div>)
@@ -13,7 +12,7 @@ export default function Msg({data,isUser}){
         (
         <div className="msgrecieved" style={{width:"225px",
             height:"auto",
-            backgroundColor:"#462908",
+            backgroundColor:"oklch(55.2% 0.016 285.938)",
             border:"2px solid black",
             marginRight:"auto"
         }}>

@@ -7,10 +7,24 @@ import {Server} from "socket.io"
 const app=express()
 const server=http.createServer(app)
 
+// app.use(cors({
+//     origin:process.env.CORS_ORIGIN,
+//     credentials:true
+// }))
+
+
+const allowedOrigins = process.env.CORS_ORIGIN?.split(',');
+
 app.use(cors({
-    origin:process.env.CORS_ORIGIN,
-    credentials:true
-}))
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS blocked: ${origin}`));
+    }
+  },
+  credentials: true,
+}));
 
 
 
@@ -43,22 +57,6 @@ app.use((err, req, res, next) => {
 });
 
 
-// const io = new Server(server,{
-//     cors:{
-//         origin:"http://127.0.0.1:3000",
-//         methods: ["GET","POST"]
-//     }
-// })
-
-// io.on("connection", (socket) => {
-//   console.log(" SOCKET CONNECTED:", socket.id);
-
-//   socket.emit("test-event", "Hello from backend");
-
-//   socket.on("send-message", (data) => {
-//     console.log("Message from client:", data);
-//   });
-// });
 
 
 

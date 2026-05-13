@@ -9,7 +9,7 @@ import{upload} from "../middlewares/multer.middleware.js"
 import {verifyJWT} from "../middlewares/auth.middleware.js"
 
 const router=Router()
-// console.log("abcd")
+
 
 router.route("/creategroup").patch(verifyJWT,
     upload.fields([{

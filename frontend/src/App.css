@@ -1,6 +1,7 @@
 *{
   padding: 5px;
   margin: 2px;
+  
 }
 
 .topbar{
@@ -124,9 +125,7 @@
 }
 
 
-
-
-.main{
+ .main{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -137,6 +136,7 @@
   margin:50px 20vw 190px 30vw;
   border-radius: 50px;
   border:2px solid black;
+  /* background-color: rgba(76, 92, 211, 0.901); */
 
 }
 
@@ -144,7 +144,7 @@
   border:2px dashed black;
   width:250px;
   border-radius:50px;
-}
+} 
 
 
 
@@ -169,3 +169,4 @@
   width:250px;
   border-radius:50px;
 }
+

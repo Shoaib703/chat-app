@@ -5,7 +5,7 @@ import Addcontact from './adddcontact.jsx'
 import Chatsfromback from './chatsfromback.jsx'
 import {useNavigate} from "react-router-dom"
 import {useAuth} from'./AuthContext.jsx'
-import { createBrowserRouter,RouterProvider } from 'react-router'
+// import { createBrowserRouter,RouterProvider } from 'react-router'
 
 function Searchbar(){
     return(<div className="searchbar">
@@ -19,19 +19,13 @@ function Searchbar(){
 }
 
 
-
-
-
-
-
-
 function Chats(){
 
     return (
-        <>
+        <div style={{scroll:"auto"}}>
         <h1> this is chat area</h1>
         <Chatsfromback/>
-        </>
+        </div>
     )
 }
 
@@ -86,9 +80,8 @@ export function Navig(){
 }
 
 function Home(){
-    const auth=useAuth()
-    const accesstoken=auth.accesstoken
-      console.log("home",accesstoken)
+    // const auth=useAuth()
+
     return (
         <>
         <Searchbar/>

@@ -7,10 +7,9 @@ import {useAuth} from './AuthContext.jsx'
 const Chatsfromback = () => {
     const handleclick=Navig();
 
-    const auth=useAuth()
-    const accesstoken=auth.accesstoken
+    // const auth=useAuth()
+ 
     const user=auth.user
-      console.log("chatsfromback",accesstoken)
     const [conversations, setconversation] = useState([])
     
 
@@ -19,29 +18,28 @@ const Chatsfromback = () => {
             const res = await fetch("http://localhost:8000/api/v2/conversations/getmyconversation",
                 {
                     method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${accesstoken}`
-                    }
+                
+                    credentials:'include'
                 })
 
             const data = await res.json()
-                // console.log(data.data.conversations[0].participants);
+
             setconversation(data.data.conversations);
         };
         fetchdata();
     },[]);
 
-    // console.log(conversations)
+
 
     return (
            <div>
             {conversations.map((convo)=>{
-                const x=convo.participants.find(p=>p!==user);
-
+                const x=convo.participants.find(p=>p._id.toString()!==user);
+                 
                 return (
                     <Chat onClick={()=>handleclick(convo._id,user)} style={{cursor:"pointer"}}
                     key={convo._id}
-                    Userid ={x}
+                    Userid ={x.username}
                     Last_message={"this is the last message"}
                     />
 
